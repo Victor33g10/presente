@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vie<wport" content="width=device-width, initial-scale=1.0">
+    <title>Para o Meu Amor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff0000 0%, #000000 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* TELA 1: ENVELOPE DA CARTA */
+        #envelope-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.8s ease-in-out;
+            width: 100%;
+            max-width: 450px;
+            transform: scale(1) translateY(0);
+        }
+
+        .envelope {
+            background: #111;
+            width: 100%;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(255, 0, 0, 0.3);
+            border: 2px solid #ff0000;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope:hover {
+            transform: scale(1.03);
+        }
+
+        .heart-icon {
+            font-size: 50px;
+            color: #ff0000;
+            animation: pulse 1.5s infinite;
+            margin-bottom: 15px;
+        }
+
+        .envelope p {
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* TELA 2: PÁGINA PRINCIPAL */
+        #main-card-screen {
+            display: none;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-in-out;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .card {
+            background: rgb(0, 0, 0);
+            width: 100%;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+            border: 1px solid #222;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff0000;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            color: #ffffff;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .photo-box {
+            background: #222;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border: 3px solid #ff0000;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-box:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .custom-text-area {
+            background: #111;
+            border: 1px dashed #ff0000;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-size: 15px;
+            line-height: 1.6;
+            text-align: left;
+            white-space: pre-line;
+        }
+
+       
+
+        .fade-in { .btn {
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #cc0000;
+            transform: scale(1.05);
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        /* CLASSES DE TRANSIÇÃO (JAVASCRIPT) */
+        .fade-out {
+            opacity: 0;
+            transform: scale(0.8) translateY(-100px);
+            pointer-events: none;
+        }
+            display: block !important;
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="envelope-screen" onclick="abrirCarta()">
+        <div class="envelope">
+            <div class="heart-icon">❤️</div>
+            <p>PARA O MEU AMOR</p>
+            <p style="font-size: 12px; color: #ff0000; margin-top: 15px;">(Clica para abrir)</p>
+        </div>
+    </div>
+
+    <div id="main-card-screen">
+        <div class="card">
+            <h1>Feliz nosso dia meu amorr ❤️</h1>
+            <p class="message">
+                01/05/2026 <br>
+                THIERRY - DAFNY
+            </p>
+
+            <div class="photo-gallery">
+                <div class="photo-box">
+                    <img src="WhatsApp Image 2026-06-30 at 17.07.52.jpeg" alt="Nossa Foto 1">
+                </div>
+                <div class="photo-box">
+                    <img src="WhatsApp Image 2026-06-30 at 17.07.53.jpeg" alt="Nossa Foto 2">
+                </div>
+            </div>
+            <button class="btn" onclick="mostrarTexto()">Ler Minha Carta ❤️</button>
+            <div class="custom-text-area" id="carta" style="display:none;">
+Enfim, hoje completamos o nosso primeiro mês juntos! Queria dizer o quanto já te amo, mas não conseguiria descrever em palavras. O nosso amor foi algo tão inexplicável, tão de repente... Ainda lembro de tudo nitidamente na minha mente.
+
+O mais interessante é que você me apaixonou de uma forma que eu nunca imaginei. Se não me engano, com 8 dias eu já te chamava de "amor", kkk. Já aprendi tantas coisas ao seu lado! Eu sei que tenho minhas brincadeiras bestas, mas em nenhum momento quero te chatear. Meu maior propósito com você — e claro, se você me permitir — é viver a vida toda ao seu lado. Eu já te amo de uma forma tão inexplicável! Mesmo que as coisas não ocorram como planejado, quero que você saiba que você foi e será a pessoa por quem mais me apaixonei na vida, mesmo sendo tão novo.
+
+Todos os dias já acordo pensando em você. Acho que eu não suportaria perder você. Eu sei que nos últimos dias as coisas estão meio estranhas, mas quero que saiba que aquele amor do começo nunca morreu em mim; talvez ele só não esteja achando a "porta". Nossa, você fez eu colocar um papel de parede que, até então, eu achava frescura. Já escrevi cartinhas, já cantei uma música para você... Se isso não for amor, não sei o que é!
+
+Meu eterno amor, não sei se já falei tudo, mas eu te amo muito, minha vaqueirinha! Desculpe pelas minhas brincadeiras, por falar besteiras, pelo meu ciúme e pelas minhas desconfianças. Por tudo. Eu prometo melhorar cada dia mais até o fim do nosso ciclo. Te amo, te amo! Minha ruivinha mandona, já consigo sentir a saudade que vai me fazer ficar tão longe de você, mas te prometo que, a qualquer tempo que der, eu vou estar voltando para te ver.
+
+Te amo, te adoro, te amo, te vivo, meu maior amor!
+
+Ass: Seu Militar
+</div>
+
+            <button class="btn" onclick="alert('Só para dizer que te amo mais uma vez, dona biaquinha! 😘❤️')">Clica Aqui</button>
+        </div>
+    </div>
+
+    <script>
+        function abrirCarta() {
+            const envelope = document.getElementById('envelope-screen');
+            const principal = document.getElementById('main-card-screen');
+
+            // Esconde o envelope com efeito de subida
+            envelope.classList.add('fade-out');
+
+            // Sincronizado para 800ms para bater com o efeito suave do CSS
+            setTimeout(() => {
+                envelope.remove(); 
+                principal.classList.add('fade-in');
+            }, 800);
+        }
+        function mostrarTexto() {
+    const carta = document.getElementById("carta");
+
+    if (carta.style.display === "none") {
+        carta.style.display = "block";
+    } else {
+        carta.style.display = "none";
+    }
+}
+    </script>
+
+</body>
+</html>
